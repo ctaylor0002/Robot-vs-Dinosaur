@@ -14,3 +14,16 @@ class Herd:
         for item in self.herd:
             return_list.append(item.name)
         return(return_list)
+
+    def get_dino_power(self):
+        return_list = []
+        for item in self.herd:
+            return_list.append(item.attack_power)
+        return(return_list)
+
+    def get_dino_health(self):
+        return_list = []
+        for item in self.herd:
+            return_list.append(item.health)
+        return(return_list)
+
