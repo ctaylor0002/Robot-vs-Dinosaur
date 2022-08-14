@@ -9,7 +9,7 @@ class Dinosaur:
 
     def attack(self, target):
         # I will get the dino's target prior to calling the function
-        print(f"{self.name} attacks {target.name} for {self.attack_power}!")
-        target.health -= self.attack_power
+        print(f"{self.name} attacks {target.name} for {self.attack_power} leaving {target.name} at {target.health}!")
+        target.health = target.health - self.attack_power
 
     

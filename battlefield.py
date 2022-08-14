@@ -54,11 +54,13 @@ class Battlefield:
                     if picked_target.health > 0:
                         got_target = True
 
-                
+                dino.attack(picked_target)
                 #picked_target.health -= dino.attack_power
 
-                print(f"{dino.name} attacks {picked_target.name} for {dino.attack_power} leaving {picked_target.name} at {picked_target.health}")
+                #print(f"{dino.name} attacks {picked_target.name} for {dino.attack_power} leaving {picked_target.name} at {picked_target.health}")
                 
+                robo_team_health = sum(robo_health)
+
             for robo in self.fleet.fleet:
                 got_target = False
 
@@ -68,7 +70,12 @@ class Battlefield:
                     if picked_target.health > 0:
                         got_target = True
 
+                robo.attack(picked_target)
                 #picked_target.health -= robo.active_weapon.attack_power
+
+                #print(f"{robo.name} attacks {picked_target.name} with {robo.active_weapon.name} for {robo.active_weapon.attack_power} leaving {picked_target.name} at {picked_target.health}")
+
+                dino_team_health = sum(dino_health)
 
                 
 

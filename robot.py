@@ -18,11 +18,11 @@ class Robot:
         self.weapon_list.append(weapon)
     
     def pick_weapon_from_arsenal(self):
-        self.active_weapon = random.randrange(0, len(self.weapon_list))
+        self.active_weapon = self.weapon_list[random.randrange(0, len(self.weapon_list))]
         
 
     def attack(self, target):
         # I will get the robos's target prior to calling the function
-        weapon = self.pick_weapon_from_arsenal
-        print(f"{self.name} attacks {target.name} with a {self.active_weapon} for {self.active_weapon.attack_power}!")
-        target.health -= self.attack_power
+        self.pick_weapon_from_arsenal()
+        print(f"{self.name} attacks {target.name} with a {self.active_weapon.weapon_name} for {self.active_weapon.attack_power} leaving {target.name} at {target.health}!")
+        target.health -= self.active_weapon.attack_power

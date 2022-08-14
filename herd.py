@@ -9,6 +9,9 @@ class Herd:
     def add_to_herd(self, dino_object):
         self.herd.append(dino_object)
 
+    def remove_from_herd(self, dino_to_remove):
+        self.herd.remove(dino_to_remove)
+
     def get_dino_name(self):
         return_list = []
         for item in self.herd:
