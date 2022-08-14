@@ -20,7 +20,46 @@
 
 # (5 points): As a developer, I want to create Fleet and Herd classes, allowing for a list of 3 Robots to battle against a list of 3 Dinosaurs.
 
+# The start of this game will have hard coded values for robot and dinosaur names that will be randomly selected and used with random health to create a random game. 
+# I will do the same thing with the weapons on the robots as well as damage on the dinosaurs
+
 import random
-weapon_list = [1, 2, 3]
-random_index = random.randrange(0,len(weapon_list))
-print(random_index)
+from dinosaur import Dinosaur
+from herd import Herd
+
+# List of Dinosaur Names
+dinosaur_names = ['Tyrannosaurus Rex', 'Stegosaurus', 'Triceratops', 'Velociraptor', 'Spinosaurus', 'Allosaurus', 'Archaeopteryx']
+
+#List of Robot Names
+robot_names = ['Cyborg', 'Android', 'Intelligent Toaster Oven', 'Drone', 'Transformer', 'Battle Roomba', 'Rover', 'Furbee']
+
+#Weapon name list
+weapon_names = ['Death Laser', 'Buzz-saw', 'Flamethrower', 'Grenade Launcher', 'Spiked Bat', 'Rail Gun', 'Anti Dinosaur Cats']
+
+#Active list for herd
+
+def create_dinosaurs_for_herd(dinosaur_names):
+    picked_name_index = random.randrange(0, len(dinosaur_names))
+    picked_name = dinosaur_names[picked_name_index]
+
+    #Give a random ammount of health to create some variance in the game
+    health = random.randrange(50,100)
+
+    #Give a random ammount of attack power to create some variance in the game
+    attack_power = random.randrange(5,20)
+
+    return([picked_name, health, attack_power])
+    #Herd.add_to_herd(Dinosaur(picked_name, health, attack_power))
+
+the_herd = Herd()           #Create the Herd Object
+
+# This runs through creating dinosaurs until I have 3 within the Herd
+while len(the_herd.herd) < 3:
+    dino_values = create_dinosaurs_for_herd(dinosaur_names)
+
+    the_herd.add_to_herd(Dinosaur(dino_values[0], dino_values[1], dino_values[2]))
+
+
+
+
+
