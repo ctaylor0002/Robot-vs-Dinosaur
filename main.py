@@ -26,6 +26,9 @@
 import random
 from dinosaur import Dinosaur
 from herd import Herd
+from fleet import Fleet
+from robot import Robot
+from weapon import Weapon
 
 # List of Dinosaur Names
 dinosaur_names = ['Tyrannosaurus Rex', 'Stegosaurus', 'Triceratops', 'Velociraptor', 'Spinosaurus', 'Allosaurus', 'Archaeopteryx']
@@ -49,7 +52,20 @@ def create_dinosaurs_for_herd(dinosaur_names):
     attack_power = random.randrange(5,20)
 
     return([picked_name, health, attack_power])
-    #Herd.add_to_herd(Dinosaur(picked_name, health, attack_power))
+
+def create_robots_for_fleet(robot_names):
+    picked_name_index = random.randrange(0, len(robot_names))
+    picked_name = robot_names[picked_name_index]
+
+    #Give a random ammount of health to create some variance in the game
+    health = random.randrange(50,100)
+
+    #I will be adding the weapons after the robot is created
+
+
+    return([picked_name, health])
+    
+
 
 the_herd = Herd()           #Create the Herd Object
 
@@ -58,6 +74,19 @@ while len(the_herd.herd) < 3:
     dino_values = create_dinosaurs_for_herd(dinosaur_names)
 
     the_herd.add_to_herd(Dinosaur(dino_values[0], dino_values[1], dino_values[2]))
+
+the_fleet = Fleet()
+
+while len(the_fleet.fleet) < 3:
+    robo_values = create_robots_for_fleet(robot_names)
+    weapons = []
+    while len(weapons) < 3:
+        weapon_name_index = random.randrange(0,len(weapon_names))
+        weapon_name = weapon_names[weapon_name_index]
+        weapon_attack_power = random.randrange(5,30)
+        weapons.append(Weapon(weapon_name, weapon_attack_power))
+
+    the_fleet.add_to_fleet(Robot(robo_values[0], robo_values[1], weapons))
 
 
 
