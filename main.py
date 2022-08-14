@@ -24,6 +24,7 @@
 # I will do the same thing with the weapons on the robots as well as damage on the dinosaurs
 
 import random
+from battlefield import Battlefield
 from dinosaur import Dinosaur
 from herd import Herd
 from fleet import Fleet
@@ -49,7 +50,7 @@ def create_dinosaurs_for_herd(dinosaur_names):
     health = random.randrange(50,100)
 
     #Give a random ammount of attack power to create some variance in the game
-    attack_power = random.randrange(5,20)
+    attack_power = random.randrange(10,20)
 
     return([picked_name, health, attack_power])
 
@@ -75,18 +76,24 @@ while len(the_herd.herd) < 3:
 
     the_herd.add_to_herd(Dinosaur(dino_values[0], dino_values[1], dino_values[2]))
 
-the_fleet = Fleet()
+the_fleet = Fleet()         #Create the Fleet Object
 
+# This runs to create 3 Robots to add to the fleet as well as 3 unique weapons for each of the robots
 while len(the_fleet.fleet) < 3:
     robo_values = create_robots_for_fleet(robot_names)
     weapons = []
     while len(weapons) < 3:
         weapon_name_index = random.randrange(0,len(weapon_names))
         weapon_name = weapon_names[weapon_name_index]
-        weapon_attack_power = random.randrange(5,30)
+        weapon_attack_power = random.randrange(5,25)
         weapons.append(Weapon(weapon_name, weapon_attack_power))
 
     the_fleet.add_to_fleet(Robot(robo_values[0], robo_values[1], weapons))
+
+the_battlefield = Battlefield(the_herd, the_fleet)
+the_battlefield.display_welcome()
+
+
 
 
 

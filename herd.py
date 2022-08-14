@@ -8,3 +8,9 @@ class Herd:
 
     def add_to_herd(self, dino_object):
         self.herd.append(dino_object)
+
+    def get_dino_name(self):
+        return_list = []
+        for item in self.herd:
+            return_list.append(item.name)
+        return(return_list)
