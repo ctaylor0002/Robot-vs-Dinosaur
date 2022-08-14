@@ -1,4 +1,3 @@
-from ast import Not
 from herd import Herd
 from fleet import Fleet
 from dinosaur import Dinosaur
@@ -43,7 +42,7 @@ class Battlefield:
         robo_team_health = sum(robo_health)
 
 
-        while dino_team_health or robo_team_health > 0:
+        while dino_team_health and robo_team_health > 0:
             for dino in self.herd.herd:
                 # Pick a target (Also determine if it has health left)
                 got_target = False
@@ -53,12 +52,14 @@ class Battlefield:
 
                     if picked_target.health > 0:
                         got_target = True
-
-                dino.attack(picked_target)
-                #picked_target.health -= dino.attack_power
-
-                #print(f"{dino.name} attacks {picked_target.name} for {dino.attack_power} leaving {picked_target.name} at {picked_target.health}")
                 
+                dino.attack(picked_target)
+                
+                if picked_target.health < 0:
+                    print(f"{picked_target.name} is unable to battle!")
+                    self.fleet.remove_from_fleet(picked_target)
+
+                robo_health = self.fleet.get_robo_health()
                 robo_team_health = sum(robo_health)
 
             for robo in self.fleet.fleet:
@@ -71,11 +72,28 @@ class Battlefield:
                         got_target = True
 
                 robo.attack(picked_target)
-                #picked_target.health -= robo.active_weapon.attack_power
 
-                #print(f"{robo.name} attacks {picked_target.name} with {robo.active_weapon.name} for {robo.active_weapon.attack_power} leaving {picked_target.name} at {picked_target.health}")
+                if picked_target.health < 0:
+                    print(f"{picked_target.name} is unable to battle!")
+                    self.herd.remove_from_herd(picked_target)
 
+                dino_health = self.herd.get_dino_health()
                 dino_team_health = sum(dino_health)
+
+        if dino_team_health <= 0:
+            winning_team = 'Robots'
+        elif robo_team_health <= 0:
+            winning_team = 'Dinosaurs'
+
+        return([winning_team, picked_winner])
+    
+    def display_winners(self, winning_team, picked_team):
+        print(f"{winning_team} has won the fight!")
+
+        if picked_team == winning_team[4:]:
+            print(f"Congratulations on picking {winning_team}!")
+        else:
+            print("Your picked team has lost!")
 
                 
 

@@ -24,5 +24,6 @@ class Robot:
     def attack(self, target):
         # I will get the robos's target prior to calling the function
         self.pick_weapon_from_arsenal()
-        print(f"{self.name} attacks {target.name} with a {self.active_weapon.weapon_name} for {self.active_weapon.attack_power} leaving {target.name} at {target.health}!")
         target.health -= self.active_weapon.attack_power
+        print(f"{self.name} attacks {target.name} with a {self.active_weapon.weapon_name} for {self.active_weapon.attack_power} leaving {target.name} at {target.health}!")
+        

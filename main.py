@@ -92,9 +92,9 @@ while len(the_fleet.fleet) < 3:
 
 the_battlefield = Battlefield(the_herd, the_fleet)
 display_msg = the_battlefield.display_welcome()
-the_battlefield.battle_phase(display_msg[0], display_msg[1], display_msg[2], display_msg[3], display_msg[4])
+battle_phase = the_battlefield.battle_phase(display_msg[0], display_msg[1], display_msg[2], display_msg[3], display_msg[4])
 
-
+the_battlefield.display_winners(battle_phase[0],battle_phase[1])
 
 
 
