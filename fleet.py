@@ -17,7 +17,7 @@ class Fleet:
     def get_robo_weapons(self):
         return_list = []
         for item in self.fleet:
-            return_list.append(item.weapons)
+            return_list.append(item.weapon_list)
         return(return_list)
 
     def get_robo_health(self):

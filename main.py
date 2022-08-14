@@ -91,7 +91,8 @@ while len(the_fleet.fleet) < 3:
     the_fleet.add_to_fleet(Robot(robo_values[0], robo_values[1], weapons))
 
 the_battlefield = Battlefield(the_herd, the_fleet)
-the_battlefield.display_welcome()
+display_msg = the_battlefield.display_welcome()
+the_battlefield.battle_phase(display_msg[0], display_msg[1], display_msg[2], display_msg[3], display_msg[4])
 
 
 
