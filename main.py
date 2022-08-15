@@ -1,3 +1,4 @@
+
 # (5 points): As a developer, I want to make at least 7 commits with good, descriptive messages.
 
 # (5 points): As a developer, I want to make a class for each of the following: Robot, Dinosaur, Weapon, Battlefield.
@@ -91,9 +92,10 @@ while len(the_fleet.fleet) < 3:
     the_fleet.add_to_fleet(Robot(robo_values[0], robo_values[1], weapons))
 
 the_battlefield = Battlefield(the_herd, the_fleet)
+
+# The game is ran here
 display_msg = the_battlefield.display_welcome()
 battle_phase = the_battlefield.battle_phase(display_msg[0], display_msg[1], display_msg[2], display_msg[3], display_msg[4])
-
 the_battlefield.display_winners(battle_phase[0],battle_phase[1])
 
 

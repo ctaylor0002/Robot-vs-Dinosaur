@@ -42,7 +42,8 @@ class Battlefield:
         robo_team_health = sum(robo_health)
 
 
-        while dino_team_health and robo_team_health > 0:
+        while dino_team_health and robo_team_health != 0:
+            print("\nDinosaur's Turn!")
             for dino in self.herd.herd:
                 # Pick a target (Also determine if it has health left)
                 got_target = False
@@ -55,14 +56,19 @@ class Battlefield:
                 
                 dino.attack(picked_target)
                 
-                if picked_target.health < 0:
+                if picked_target.health <= 0:
                     print(f"{picked_target.name} is unable to battle!")
                     self.fleet.remove_from_fleet(picked_target)
 
                 robo_health = self.fleet.get_robo_health()
                 robo_team_health = sum(robo_health)
 
+                if robo_team_health == 0:
+                    print("The Fleet has been destroyed!")
+                    break
+            print("\nRobot's Turn!")
             for robo in self.fleet.fleet:
+                
                 got_target = False
 
                 while got_target != True:
@@ -73,12 +79,16 @@ class Battlefield:
 
                 robo.attack(picked_target)
 
-                if picked_target.health < 0:
+                if picked_target.health <= 0:
                     print(f"{picked_target.name} is unable to battle!")
                     self.herd.remove_from_herd(picked_target)
 
                 dino_health = self.herd.get_dino_health()
                 dino_team_health = sum(dino_health)
+
+                if dino_team_health == 0:
+                    print('The Herd has been wiped out!')
+                    break
 
         if dino_team_health <= 0:
             winning_team = 'Robots'
@@ -88,9 +98,9 @@ class Battlefield:
         return([winning_team, picked_winner])
     
     def display_winners(self, winning_team, picked_team):
-        print(f"{winning_team} has won the fight!")
+        print(f"\n{winning_team} has won the fight!")
 
-        if picked_team == winning_team[4:]:
+        if picked_team == winning_team[4:].title():
             print(f"Congratulations on picking {winning_team}!")
         else:
             print("Your picked team has lost!")
